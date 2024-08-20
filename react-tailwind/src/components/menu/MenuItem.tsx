@@ -13,10 +13,8 @@ export default function MenuItem(props: MenuItemProps) {
         <Link href={props.url}>
             <div className="
             flex gap-2 
-            my-1
-            mx-2 px-8 py-1
-            rounded-md  
-            text-zinc-300 hover:bg-zinc-700"
+            my-1 mx-2 px-8 py-1 rounded-md
+            hover:bg-zinc-300 dark:hover:bg-zinc-700"
             >
                 <span>{React.cloneElement(props.icon, {
                     stroke: 1

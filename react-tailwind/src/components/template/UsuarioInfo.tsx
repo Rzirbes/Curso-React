@@ -18,7 +18,7 @@ export default function UsuarioInfo(props: UsuarioInfoProps) {
                     height={50}
                     className='bg-zinc-700 rounded-full'
                 ></Image>
-                <div className="flex flex-col">
+                <div className=" flex flex-col">
                     <span>{props.nome}</span>
                     <span>{props.email}</span>
                 </div>

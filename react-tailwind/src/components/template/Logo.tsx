@@ -12,7 +12,7 @@ export default function Logo(props: LogoProps) {
                 stroke: 1
             })}
             </span>
-            <h1 className="font-bold text-2xl text-zinc-300">{props.titulo}</h1>
+            <h1 className="font-bold text-2xl">{props.titulo}</h1>
         </div>
     )
 }

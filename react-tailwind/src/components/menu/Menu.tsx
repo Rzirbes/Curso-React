@@ -33,7 +33,6 @@ export default function Menu(props: MenuProps) {
             <MenuItem url='../grid/inicial'  text="Resumão Grid" icon={<IconGridDots />} />
             <MenuItem url='../grid/posicionamento'  text="Posicionamento" icon={<IconLayout2 />} />
             <MenuItem url='../grid/layout'  text="Componente Grid" icon={<IconLayoutBoardSplit />} />
-
             
 
         </div>
