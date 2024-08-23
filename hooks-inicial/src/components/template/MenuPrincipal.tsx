@@ -5,12 +5,13 @@ import Logo from "./Logo";
 import MenuPrincipalItem from "./MenuPrincipalItem";
 import MenuPrincipalSecao from "./MenuPrincipalSecao";
 import Flex from "./Flex";
-import { IconAppWindow, IconAppWindowFilled, IconArrowsLeftRight, IconLetterCase, IconMathGreater, IconNumbers, IconRefreshAlert, IconSection, IconToggleLeft, IconUsers } from "@tabler/icons-react";
-import { useState } from "react";
+import { IconAppWindow, IconArrowsLeftRight, IconDimensions, IconLetterCase, IconLock, IconMathGreater, IconMenu, IconNumbers, IconRefreshAlert, IconSection, IconUsers, IconX } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
+import useToggle from "@/data/hooks/useToggle";
+import useTamanhoJanela from "@/data/hooks/useTamanhoJanela";
+import useBoolean from "@/data/hooks/useToggleBoolean";
 
 export default function MenuPrincipal() {
-
-    
 
     const secoes = [
         {
@@ -82,26 +83,35 @@ export default function MenuPrincipal() {
                     titulo: "Tamanha da Página",
                     url: "/personalizados/tamanhoJanela",
                     tag: "useState",
-                    icone: <IconAppWindowFilled />
+                    icone: <IconDimensions />
                 },
                 {
                     titulo: "Senha",
                     url: "/personalizados/senha",
                     tag: "useState",
-                    icone: <IconAppWindowFilled />
+                    icone: <IconLock />
                 },
             ],
 
         },
     ];
-    const mini = false;
+
+    const [mini, toggleMini, miniTrue] = useBoolean(false);
+    let tamanho = useTamanhoJanela()
+
+    useEffect(() => {
+        if (tamanho === "md" || tamanho === "sm") {
+            miniTrue()
+        }
+    }, [tamanho])
+
     function renderizarSecoes() {
         return secoes.map((secao: MenuSecao) => (
             <MenuPrincipalSecao
                 key={secao.titulo}
                 titulo={secao.titulo}
                 mini={mini} aberta={secao.aberta}
-                onClick={() => {}}>
+                onClick={() => { }}>
                 {renderizarItens(secao)}
             </MenuPrincipalSecao>
         ));
@@ -132,6 +142,9 @@ export default function MenuPrincipal() {
         >
             <Flex center className="m-7">
                 {!mini && <Logo />}
+                <div className="cursor-pointer" onClick={toggleMini}>
+                    {mini ? <IconMenu /> : <IconX />}
+                </div>
             </Flex>
             <nav className="flex flex-col gap-4 m-7">{renderizarSecoes()}</nav>
         </aside>
