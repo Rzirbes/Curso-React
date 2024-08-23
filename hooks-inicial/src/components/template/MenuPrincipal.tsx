@@ -5,83 +5,135 @@ import Logo from "./Logo";
 import MenuPrincipalItem from "./MenuPrincipalItem";
 import MenuPrincipalSecao from "./MenuPrincipalSecao";
 import Flex from "./Flex";
-import { IconArrowsLeftRight, IconInputCheck, IconInputX, IconLetterCase, IconMathGreater, IconNumbers, IconUsers } from "@tabler/icons-react";
+import { IconAppWindow, IconAppWindowFilled, IconArrowsLeftRight, IconLetterCase, IconMathGreater, IconNumbers, IconRefreshAlert, IconSection, IconToggleLeft, IconUsers } from "@tabler/icons-react";
+import { useState } from "react";
 
 export default function MenuPrincipal() {
+
+    
+
     const secoes = [
         {
             titulo: "Essenciais",
+            aberta: false,
+            itens: [
+                {
+                    titulo: "Contador",
+                    url: "/essenciais/contador",
+                    tag: "useState",
+                    icone: <IconNumbers />
+                },
+                {
+                    titulo: "Votação",
+                    url: "/essenciais/votacao",
+                    tag: "useState",
+                    icone: <IconUsers />
+                },
+                {
+                    titulo: "Consulta",
+                    url: "/essenciais/consultaApi",
+                    tag: "useEffect",
+                    icone: <IconArrowsLeftRight />
+                },
+                {
+                    titulo: "Maior",
+                    url: "/essenciais/maior",
+                    tag: "useEffect",
+                    icone: <IconMathGreater />
+                },
+                {
+                    titulo: "Contagem Caracteres",
+                    url: "/essenciais/contagemCaracteresEffect",
+                    tag: "useEffect",
+                    icone: <IconLetterCase />
+                },
+                {
+                    titulo: "Referência vs State",
+                    url: "/essenciais/stateVsRef",
+                    tag: "useRef",
+                    icone: <IconRefreshAlert />
+                },
+                {
+                    titulo: "Referenciando Elemento",
+                    url: "/essenciais/refElemento",
+                    tag: "useRef",
+                    icone: <IconSection />
+                },
+                {
+                    titulo: "Contagem Caracteres",
+                    url: "/essenciais/contagemCaracteresRef",
+                    tag: "useRef",
+                    icone: <IconLetterCase />
+                },
+            ],
+
+        },
+        {
+            titulo: "Personalizados",
             aberta: true,
             itens: [
                 {
-                    titulo: "Contador", 
-                    url: "/essenciais/contador", 
-                    tag: "useState", 
-                    icone: <IconNumbers/>
+                    titulo: "Modal",
+                    url: "/personalizados/modal",
+                    tag: "useState",
+                    icone: <IconAppWindow />
                 },
                 {
-                    titulo: "Votação", 
-                    url: "/essenciais/votacao", 
-                    tag: "useState", 
-                    icone: <IconUsers/>
+                    titulo: "Tamanha da Página",
+                    url: "/personalizados/tamanhoJanela",
+                    tag: "useState",
+                    icone: <IconAppWindowFilled />
                 },
                 {
-                    titulo: "Consulta", 
-                    url: "/essenciais/consultaApi", 
-                    tag: "useEffect", 
-                    icone: <IconArrowsLeftRight/>
+                    titulo: "Senha",
+                    url: "/personalizados/senha",
+                    tag: "useState",
+                    icone: <IconAppWindowFilled />
                 },
-                {
-                    titulo: "Maior", 
-                    url: "/essenciais/maior", 
-                    tag: "useEffect", 
-                    icone: <IconMathGreater/>
-                },
-                {
-                    titulo: "Contagem Caracteres", 
-                    url: "/essenciais/contagemCaracteresEffect", 
-                    tag: "useEffect", 
-                    icone: <IconLetterCase/>
-                },
-    ],
-},
+            ],
+
+        },
     ];
-const mini = false;
-function renderizarSecoes() {
-    return secoes.map((secao: MenuSecao) => (
-        <MenuPrincipalSecao key={secao.titulo} titulo={secao.titulo} mini={mini} aberta={secao.aberta}>
-            {renderizarItens(secao)}
-        </MenuPrincipalSecao>
-    ));
-}
+    const mini = false;
+    function renderizarSecoes() {
+        return secoes.map((secao: MenuSecao) => (
+            <MenuPrincipalSecao
+                key={secao.titulo}
+                titulo={secao.titulo}
+                mini={mini} aberta={secao.aberta}
+                onClick={() => {}}>
+                {renderizarItens(secao)}
+            </MenuPrincipalSecao>
+        ));
+    }
 
-function renderizarItens(secao: MenuSecao) {
-    return secao.itens.map((item: MenuItem) => (
-        <MenuPrincipalItem
-            key={`${item.titulo}-${item.tag}`}
-            icone={item.icone}
-            titulo={item.titulo}
-            tag={item.tag}
-            url={item.url}
-            mini={mini}
-        />
-    ));
-}
+    function renderizarItens(secao: MenuSecao) {
+        return secao.itens.map((item: MenuItem) => (
+            <MenuPrincipalItem
+                key={`${item.titulo}-${item.tag}`}
+                icone={item.icone}
+                titulo={item.titulo}
+                tag={item.tag}
+                url={item.url}
+                mini={mini}
+            />
+        ));
+    }
 
-return (
-    <aside
-        className={`
+    return (
+        <aside
+            className={`
             flex flex-col overflow-y-scroll overflow-x-hidden
             bg-black shadow-md shadow-zinc-800
             scrollbar-thumb-zinc-700 scrollbar-track-zinc-800 
             scrollbar-thin
             ${mini ? "items-center w-[130px]" : "w-[370px]"}
         `}
-    >
-        <Flex center className="m-7">
-            {!mini && <Logo />}
-        </Flex>
-        <nav className="flex flex-col gap-4 m-7">{renderizarSecoes()}</nav>
-    </aside>
-);
+        >
+            <Flex center className="m-7">
+                {!mini && <Logo />}
+            </Flex>
+            <nav className="flex flex-col gap-4 m-7">{renderizarSecoes()}</nav>
+        </aside>
+    );
 }
