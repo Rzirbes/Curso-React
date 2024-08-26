@@ -5,105 +5,15 @@ import Logo from "./Logo";
 import MenuPrincipalItem from "./MenuPrincipalItem";
 import MenuPrincipalSecao from "./MenuPrincipalSecao";
 import Flex from "./Flex";
-import { IconAppWindow, IconArrowsLeftRight, IconDimensions, IconLetterCase, IconLock, IconMathGreater, IconMenu, IconNumbers, IconRefreshAlert, IconSection, IconUsers, IconX } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
-import useToggle from "@/data/hooks/useToggle";
-import useTamanhoJanela from "@/data/hooks/useTamanhoJanela";
-import useBoolean from "@/data/hooks/useToggleBoolean";
+import { IconMenu, IconX } from "@tabler/icons-react";
+import useMenu from "@/data/hooks/useMenu";
+
 
 export default function MenuPrincipal() {
 
-    const secoes = [
-        {
-            titulo: "Essenciais",
-            aberta: false,
-            itens: [
-                {
-                    titulo: "Contador",
-                    url: "/essenciais/contador",
-                    tag: "useState",
-                    icone: <IconNumbers />
-                },
-                {
-                    titulo: "Votação",
-                    url: "/essenciais/votacao",
-                    tag: "useState",
-                    icone: <IconUsers />
-                },
-                {
-                    titulo: "Consulta",
-                    url: "/essenciais/consultaApi",
-                    tag: "useEffect",
-                    icone: <IconArrowsLeftRight />
-                },
-                {
-                    titulo: "Maior",
-                    url: "/essenciais/maior",
-                    tag: "useEffect",
-                    icone: <IconMathGreater />
-                },
-                {
-                    titulo: "Contagem Caracteres",
-                    url: "/essenciais/contagemCaracteresEffect",
-                    tag: "useEffect",
-                    icone: <IconLetterCase />
-                },
-                {
-                    titulo: "Referência vs State",
-                    url: "/essenciais/stateVsRef",
-                    tag: "useRef",
-                    icone: <IconRefreshAlert />
-                },
-                {
-                    titulo: "Referenciando Elemento",
-                    url: "/essenciais/refElemento",
-                    tag: "useRef",
-                    icone: <IconSection />
-                },
-                {
-                    titulo: "Contagem Caracteres",
-                    url: "/essenciais/contagemCaracteresRef",
-                    tag: "useRef",
-                    icone: <IconLetterCase />
-                },
-            ],
+    const { secoes, mini, toggleMini, alternarSecao } = useMenu()
 
-        },
-        {
-            titulo: "Personalizados",
-            aberta: true,
-            itens: [
-                {
-                    titulo: "Modal",
-                    url: "/personalizados/modal",
-                    tag: "useState",
-                    icone: <IconAppWindow />
-                },
-                {
-                    titulo: "Tamanha da Página",
-                    url: "/personalizados/tamanhoJanela",
-                    tag: "useState",
-                    icone: <IconDimensions />
-                },
-                {
-                    titulo: "Senha",
-                    url: "/personalizados/senha",
-                    tag: "useState",
-                    icone: <IconLock />
-                },
-            ],
 
-        },
-    ];
-
-    const [mini, toggleMini, miniTrue] = useBoolean(false);
-    let tamanho = useTamanhoJanela()
-
-    useEffect(() => {
-        if (tamanho === "md" || tamanho === "sm") {
-            miniTrue()
-        }
-    }, [tamanho])
 
     function renderizarSecoes() {
         return secoes.map((secao: MenuSecao) => (
@@ -111,7 +21,8 @@ export default function MenuPrincipal() {
                 key={secao.titulo}
                 titulo={secao.titulo}
                 mini={mini} aberta={secao.aberta}
-                onClick={() => { }}>
+                onClick={() => alternarSecao(secao)}
+            >
                 {renderizarItens(secao)}
             </MenuPrincipalSecao>
         ));
@@ -126,6 +37,7 @@ export default function MenuPrincipal() {
                 tag={item.tag}
                 url={item.url}
                 mini={mini}
+                selecionado={item.selecionado}
             />
         ));
     }
