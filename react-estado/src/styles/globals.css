@@ -48,6 +48,10 @@ body {
     @apply  btn;
     @apply bg-blue-500 hover:bg-blue-700
   }
+  .btn-danger {
+    @apply  btn;
+    @apply bg-red-500 hover:bg-red-700
+  }
 
 }
 
