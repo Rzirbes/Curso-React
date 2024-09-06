@@ -9,9 +9,9 @@ export default function Player() {
     return (
         <div className="
             flex flex-col justify-center items-center
-            w-full sm:w-11/12 h-60 sm:h-3/5 bg-zinc-700 rounded-lg p-3
+            w-full sm:w-11/12 h-60 sm:h-80 md:h-96 bg-zinc-700 rounded-lg p-3
         ">
-            <span className="text-lg sm:text-2xl font-black">{aulaAtual.titulo}</span>
+            <span className="text-lg sm:text-2xl md:text-3xl font-black">{aulaAtual.titulo}</span>
             <div className="aspect-video w-full h-full p-2 sm:p-5 overflow-hidden">
                 <iframe
                     width="100%"

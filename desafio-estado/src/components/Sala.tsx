@@ -13,7 +13,7 @@ export default function Sala() {
     return (
         <div className="flex flex-col sm:flex-row">
             <div className="bg-zinc-800 w-full sm:w-96 h-64 sm:h-screen overflow-auto">
-                {capitulosFakes.map(capitulo => {
+                {capitulos.map(capitulo => {
                     return <CapituloItem key={capitulo.id} capitulo={capitulo}></CapituloItem>
                 })}
             </div>
