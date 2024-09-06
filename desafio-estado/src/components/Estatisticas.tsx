@@ -11,7 +11,7 @@ export default function Estatisticas() {
             w-full sm:w-11/12 h-auto sm:h-32 bg-zinc-700 rounded-lg p-4
             text-center
         ">
-            <div className="flex flex-col sm:flex-row justify-between w-full">
+            <div className="flex flex-col sm:flex-row justify-center w-full">
                 <Estatistica texto="Qtde Aulas" valor={qtdeDeAulas} />
             </div>
             <div className="flex flex-col sm:flex-row justify-between w-full">
