@@ -9,6 +9,9 @@ interface CursoContextProps {
     aulaAtual: Aula
     qtdeDeAulas: number
     qtdeDeAulasConcluidas: number
+    duracaoTotal: string
+    duracaoConcluida: string
+    porcentagemConcluida: string
     selecionarAula: (aula: Aula) => void
     alternarConclusaoAula: (aula: Aula) => void
 }
@@ -45,7 +48,10 @@ export function CursoProvider(props: any) {
             selecionarAula,
             alternarConclusaoAula,
             get qtdeDeAulas() { return cursoEstatisticas.qtdeDeAulas()},
-            get qtdeDeAulasConcluidas() { return cursoEstatisticas.qtdeDeAulasConcluidas()}
+            get qtdeDeAulasConcluidas() { return cursoEstatisticas.qtdeDeAulasConcluidas()},
+            get duracaoTotal() { return cursoEstatisticas.duracaoTotal()},
+            get duracaoConcluida() { return cursoEstatisticas.duracaoConcluida()},
+            get porcentagemConcluida() { return cursoEstatisticas.porcentagemConclusao()}
         }}>
             {props.children}
         </CursoContext.Provider>
