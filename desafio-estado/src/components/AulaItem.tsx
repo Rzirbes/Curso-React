@@ -21,7 +21,7 @@ export default function AulaItem(props: AulaItemProps) {
                 onClick={() => selecionarAula(aula)} 
             >
                 <span className={`
-                    text-sm sm:text-base md:text-lg
+                    text-sm sm:text-base md:text-md
                     ${selecionada && 'text-yellow-600'}
                 `}>
                     {aula.ordem}. {aula.titulo}
