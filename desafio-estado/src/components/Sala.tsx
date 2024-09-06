@@ -11,8 +11,9 @@ export default function Sala() {
 
     const capitulosFakes = capitulos;
     return (
-        <div className="flex flex-col sm:flex-row">
-            <div className="bg-zinc-800 w-full sm:w-96 h-64 sm:h-screen overflow-auto">
+        <div className="flex flex-col sm:flex-row ">
+            <div className="
+                scrollbar-thin scrollbar-thumb-gray-900 bg-zinc-800 w-full sm:w-96 h-64 sm:h-screen overflow-auto">
                 {capitulos.map(capitulo => {
                     return <CapituloItem key={capitulo.id} capitulo={capitulo}></CapituloItem>
                 })}
