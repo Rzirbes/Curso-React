@@ -11,8 +11,8 @@ interface AulaItemProps {
 }
 
 export default function AulaItem(props: AulaItemProps) {
-    const { aula, selecionada, } = props
-    const {selecionarAula, alternarConclusaoAula} = useContext(CursoContext)
+    const { aula, selecionada } = props
+    const { selecionarAula, alternarConclusaoAula } = useContext(CursoContext)
     return (
         <div className="flex gap-2 items-center py-1">
             <AulaConclusao concluida={aula.concluida ?? false} onClick={() => alternarConclusaoAula(aula)} />
@@ -21,11 +21,14 @@ export default function AulaItem(props: AulaItemProps) {
                 onClick={() => selecionarAula(aula)} 
             >
                 <span className={`
-                        ${selecionada && 'text-yellow-600'}
+                    text-sm sm:text-base
+                    ${selecionada && 'text-yellow-600'}
                 `}>
                     {aula.ordem}. {aula.titulo}
                 </span>
-                <span className="-mt-1 text-sm text-zinc-400">Duração de {Duracao.duracaoDe(props.aula.duracao)}</span>
+                <span className="-mt-1 text-xs sm:text-sm text-zinc-400">
+                    Duração de {Duracao.duracaoDe(props.aula.duracao)}
+                </span>
             </div>
             <IconVideo size={20} />
         </div>

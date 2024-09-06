@@ -50,6 +50,6 @@ export default class CursoEstatisticas {
         if (duracaoTotal === 0) return "0%" 
 
         const porcentagem = (duracaoConcluida / duracaoTotal) * 100
-        return `${porcentagem.toFixed(2)}%`
+        return `${porcentagem.toFixed()}%`
     }
 }
